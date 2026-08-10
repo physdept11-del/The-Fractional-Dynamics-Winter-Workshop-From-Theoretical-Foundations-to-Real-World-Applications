@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>عرض الردود - ورشة الفيزياء</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: right; }
+        th { background: #4CAF50; color: white; }
+    </style>
+</head>
+<body>
+    <h1>📋 قائمة المسجلين في الورشة</h1>
+    
+    <div id="data-container">
+        <p>⏳ جاري تحميل البيانات...</p>
+    </div>
+    
+    <script>
+        // جلب البيانات من LocalStorage
+        function loadResponses() {
+            const responses = JSON.parse(localStorage.getItem('workshop_submissions') || '[]');
+            const container = document.getElementById('data-container');
+            
+            if (responses.length === 0) {
+                container.innerHTML = '<p>⚠️ لا توجد بيانات مسجلة بعد</p>';
+                return;
+            }
+            
+            let html = `
+                <table>
+                    <tr>
+                        <th>#</th>
+                        <th>الاسم</th>
+                        <th>البريد</th>
+                        <th>الهاتف</th>
+                        <th>الجامعة</th>
+                        <th>الشهادة</th>
+                        <th>التاريخ</th>
+                    </tr>
+            `;
+            
+            responses.forEach((item, index) => {
+                html += `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${item.full_name_ar || ''}</td>
+                        <td>${item.email || ''}</td>
+                        <td>${item.phone || ''}</td>
+                        <td>${item.university || ''}</td>
+                        <td>${item.certificate || ''}</td>
+                        <td>${new Date(item.timestamp).toLocaleString('ar-EG')}</td>
+                    </tr>
+                `;
+            });
+            
+            html += '</table>';
+            container.innerHTML = html;
+        }
+        
+        loadResponses();
+    </script>
+</body>
+</html>

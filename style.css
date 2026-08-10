@@ -1,0 +1,115 @@
+/* ملف التنسيقات الرئيسي */
+
+/* تخصيص الخطوط */
+body {
+    font-family: 'Cairo', 'Arial', sans-serif;
+}
+
+/* تأثيرات خاصة */
+.section-title {
+    position: relative;
+    padding-right: 15px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 5px;
+    height: 70%;
+    background: #4f46e5;
+    border-radius: 5px;
+}
+
+/* تأثيرات على الحقول */
+input:focus, select:focus, textarea:focus {
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+    outline: none;
+}
+
+/* تأثيرات على الأزرار */
+.btn-primary {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* أنماط للبطاقات */
+.workshop-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+/* أنماط للشهادات */
+.certificate-option {
+    border: 2px solid #e5e7eb;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.certificate-option:hover {
+    background-color: #f3f4f6;
+    border-color: #6366f1;
+}
+
+/* أنماط للإحصائيات */
+.stats-card {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+}
+
+/* تأثيرات الظهور */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* تخصيص شريط التمرير */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* تنسيقات للهواتف */
+@media (max-width: 768px) {
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    h1 {
+        font-size: 1.75rem;
+    }
+    
+    h2 {
+        font-size: 1.25rem;
+    }
+}

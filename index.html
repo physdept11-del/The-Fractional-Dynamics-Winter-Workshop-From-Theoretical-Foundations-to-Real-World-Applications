@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل ورشة عمل الفيزياء - آفاق جديدة</title>
+    
+    <!-- روابط CSS الخارجية -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- ملفات CSS المحلية -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+</head>
+<body class="bg-gray-50">
+    <div class="container mx-auto px-4 py-8">
+        <!-- العنوان الرئيسي -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-blue-800 mb-4">
+                <i class="fas fa-atom ml-3"></i>
+                ورشة عمل: آفاق جديدة في الفيزياء
+            </h1>
+            <h2 class="text-2xl text-gray-700 mb-6">New Frontiers in Physics: Theory, Experiment, and Medicine</h2>
+            <div class="bg-blue-100 inline-block px-6 py-3 rounded-full">
+                <span class="text-blue-800 font-bold text-lg">
+                    قسم الفيزياء - كلية العلوم - جامعة المنصورة
+                </span>
+            </div>
+        </div>
+
+        <!-- معلومات الورشة -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                <div class="text-blue-600 text-3xl mb-3">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-2">📅 التاريخ</h3>
+                <p class="text-gray-700">10-12 فبراير 2026</p>
+            </div>
+            
+            <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                <div class="text-green-600 text-3xl mb-3">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-2">📍 المكان</h3>
+                <p class="text-gray-700">قسم الفيزياء - كلية العلوم<br>جامعة المنصورة</p>
+            </div>
+            
+            <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                <div class="text-purple-600 text-3xl mb-3">
+                    <i class="fas fa-ticket-alt"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-2">💰 الحضور</h3>
+                <p class="text-green-600 font-bold text-xl">مجاني</p>
+            </div>
+            
+            <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                <div class="text-yellow-600 text-3xl mb-3">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <h3 class="font-bold text-lg mb-2">📜 الشهادة</h3>
+                <p class="text-gray-700">100 جنيه مصري<br><span class="text-sm">(اختياري)</span></p>
+            </div>
+        </div>
+
+        <!-- المحتوى الرئيسي -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- نموذج التسجيل -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-2xl shadow-xl p-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-8 border-r-4 border-blue-500 pr-4">
+                        <i class="fas fa-user-edit ml-3"></i>
+                        نموذج التسجيل
+                    </h3>
+                    
+                    <form id="registrationForm">
+                        <!-- القسم 1: البيانات الشخصية -->
+                        <div class="mb-10">
+                            <h4 class="text-xl font-bold text-gray-800 mb-6">البيانات الشخصية</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-gray-700 font-semibold mb-3">
+                                        الاسم الكامل (عربي) <span class="text-red-500">*</span>
+                                    </label>
+                                    <input type="text" id="full_name_ar" name="full_name_ar" required 
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"
+                                        placeholder="مثال: أحمد محمد علي">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 font-semibold mb-3">
+                                        الاسم الكامل (إنجليزي) <span class="text-red-500">*</span>
+                                        <span class="block text-sm text-gray-500 font-normal mt-1">(كما سيظهر في الشهادة)</span>
+                                    </label>
+                                    <input type="text" id="full_name_en" name="full_name_en" required 
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"
+                                        placeholder="Example: Ahmed Mohamed Ali">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 font-semibold mb-3">
+                                        البريد الإلكتروني <span class="text-red-500">*</span>
+                                    </label>
+                                    <input type="email" id="email" name="email" required 
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"
+                                        placeholder="example@university.edu">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 font-semibold mb-3">
+                                        رقم الهاتف <span class="text-red-500">*</span>
+                                    </label>
+                                    <input type="tel" id="phone" name="phone" required 
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"
+                                        placeholder="01XXXXXXXXX">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 font-semibold mb-3">
+                                        الجنسية
+                                    </label>
+                                    <input type="text" id="nationality" name="nationality" 
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"
+                                        placeholder="مصرية">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- القسم 2: المعلومات الأكاديمية -->
+                        <div class="mb-10">
+                            <h4 class="text-xl font-bold text-gray-800 mb-6">المعلومات الأكاديمية</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-gray-700 font-semibold mb-3">
+                                        المستوى الدراسي <span class="text-red-500">*</span>
+                                    </label>
+                                    <select id="academic_level" name="academic_level" required 
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition bg-white">
+                                        <option value="">اختر المستوى الدراسي</option>
+                                        <option value="طالب بكالوريوس">طالب بكالوريوس</option>
+                                        <option value="طالب ماجستير">طالب ماجستير</option>
+                                        <option value="طالب دكتوراه">طالب دكتوراه</option>
+                                        <option value="باحث">باحث</option>
+                                        <option value="أكاديمي">أكاديمي</option>
+                                        <option value="مهتم بالفيزياء">مهتم بالفيزياء</option>
+                                        <option value="آخر">آخر</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 font-semibold mb-3">
+                                        الجامعة/المؤسسة <span class="text-red-500">*</span>
+                                    </label>
+                                    <input type="text" id="university" name="university" required 
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"
+                                        placeholder="اسم الجامعة أو المؤسسة">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 font-semibold mb-3">
+                                        القسم/التخصص <span class="text-red-500">*</span>
+                                    </label>
+                                    <input type="text" id="department" name="department" required 
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"
+                                        placeholder="مثال: قسم الفيزياء">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 font-semibold mb-3">
+                                        السنة الدراسية
+                                    </label>
+                                    <input type="text" id="year_of_study" name="year_of_study" 
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"
+                                        placeholder="مثال: السنة الثالثة">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- القسم 3: الشهادة -->
+                        <div class="mb-10">
+                            <h4 class="text-xl font-bold text-gray-800 mb-6">الشهادة</h4>
+                            <div class="space-y-4">
+                                <label class="flex items-start p-4 border-2 border-gray-300 rounded-xl cursor-pointer hover:bg-blue-50 transition duration-200">
+                                    <input type="radio" name="certificate" value="نعم" required 
+                                        class="mt-1 ml-4 w-5 h-5 text-blue-600">
+                                    <div>
+                                        <span class="font-bold text-lg block">نعم، أرغب في الحصول على شهادة حضور</span>
+                                        <p class="text-gray-600 mt-2">رسوم الشهادة: 100 جنيه مصري تُسدد لسكرتارية قسم الفيزياء يوم الورشة</p>
+                                        <div class="mt-3 bg-yellow-50 p-3 rounded-lg inline-block">
+                                            <i class="fas fa-info-circle text-yellow-500 ml-2"></i>
+                                            <span class="text-sm">سيتم طباعة الاسم الإنجليزي كما أدخلته على الشهادة</span>
+                                        </div>
+                                    </div>
+                                </label>
+                                <label class="flex items-start p-4 border-2 border-gray-300 rounded-xl cursor-pointer hover:bg-blue-50 transition duration-200">
+                                    <input type="radio" name="certificate" value="لا" required 
+                                        class="mt-1 ml-4 w-5 h-5 text-blue-600">
+                                    <div>
+                                        <span class="font-bold text-lg block">لا، سأكتفي بالحضور فقط</span>
+                                        <p class="text-gray-600 mt-2">الحضور مجاني ولا يتطلب أي رسوم</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- القسم 4: مجالات الاهتمام -->
+                        <div class="mb-10">
+                            <h4 class="text-xl font-bold text-gray-800 mb-6">مجالات اهتمامك في الفيزياء</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 cursor-pointer transition">
+                                    <input type="checkbox" name="interests[]" value="الفيزياء النظرية" 
+                                        class="ml-3 w-5 h-5 text-blue-600 rounded">
+                                    <span class="font-medium">الفيزياء النظرية</span>
+                                </label>
+                                <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 cursor-pointer transition">
+                                    <input type="checkbox" name="interests[]" value="الفيزياء التجريبية" 
+                                        class="ml-3 w-5 h-5 text-blue-600 rounded">
+                                    <span class="font-medium">الفيزياء التجريبية</span>
+                                </label>
+                                <label class="flex items-center p-3 border border-gray-300 rounded-lg hover:bg-blue-50 cursor-pointer transition">
+                                    <input type="checkbox" name="interests[]" value="الفيزياء الطبية" 
+                                        class="ml-3 w-5 h-5 text-blue-600 rounded">
+                                    <span class="font-medium">الفيزياء الطبية</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- الشروط والأحكام -->
+                        <div class="mb-10 p-4 bg-gray-50 rounded-lg">
+                            <label class="flex items-start">
+                                <input type="checkbox" id="terms" required 
+                                    class="mt-1 ml-3 w-5 h-5 text-blue-600 rounded">
+                                <span class="text-gray-700">
+                                    أوافق على جمع ومعالجة بياناتي الشخصية لغرض التسجيل في ورشة العمل وتلقي التواصل بشأنها. 
+                                    <span class="text-red-500">*</span>
+                                </span>
+                            </label>
+                        </div>
+
+                        <!-- زر الإرسال -->
+                        <div class="pt-4">
+                            <button type="submit" id="submitBtn" 
+                                class="w-full bg-gradient-to-r from-blue-600 to-blue-800 text-white font-bold py-4 px-6 rounded-xl hover:from-blue-700 hover:to-blue-900 transition duration-300 transform hover:scale-[1.02] shadow-lg text-lg">
+                                <i class="fas fa-paper-plane ml-2"></i>
+                                إرسال التسجيل
+                            </button>
+                        </div>
+
+                        <!-- ملاحظة الحقول المطلوبة -->
+                        <div class="text-center text-sm text-gray-600 pt-4">
+                            <span class="text-red-500">*</span> الحقول المطلوبة
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- الشريط الجانبي -->
+            <div class="space-y-8">
+                <!-- محاور الورشة -->
+                <div class="bg-white rounded-2xl shadow-xl p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">
+                        <i class="fas fa-calendar-day ml-3 text-blue-600"></i>
+                        محاور الورشة
+                    </h3>
+                    
+                    <div class="space-y-6">
+                        <div class="border-r-4 border-blue-500 pr-4">
+                            <div class="font-bold text-blue-700 text-lg">اليوم الأول (10 فبراير)</div>
+                            <div class="text-gray-600 mt-2">محاضرة عامة عن مهارات البحث والتحليل والجلسات التجريبية في الفيزياء</div>
+                        </div>
+                        <div class="border-r-4 border-purple-500 pr-4">
+                            <div class="font-bold text-purple-700 text-lg">اليوم الثاني (11 فبراير)</div>
+                            <div class="text-gray-600 mt-2">الجلسات النظرية في الفيزياء الحديثة</div>
+                        </div>
+                        <div class="border-r-4 border-green-500 pr-4">
+                            <div class="font-bold text-green-700 text-lg">اليوم الثالث (12 فبراير)</div>
+                            <div class="text-gray-600 mt-2">تطبيقات الفيزياء في المجال الطبي</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 pt-6 border-t border-gray-200">
+                        <div class="flex items-center text-gray-700">
+                            <i class="fas fa-clock ml-2"></i>
+                            <span class="mr-2">التوقيت: 9:00 صباحاً - 3:00 عصراً</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- معلومات الاتصال -->
+                <div class="bg-white rounded-2xl shadow-xl p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">
+                        <i class="fas fa-headset ml-3 text-green-600"></i>
+                        معلومات الاتصال
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <i class="fas fa-envelope text-gray-500 mt-1 ml-3"></i>
+                            <div>
+                                <div class="font-medium">البريد الإلكتروني:</div>
+                                <a href="mailto:phys.dept11@gmail.com" class="text-blue-600 hover:underline">phys.dept11@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-university text-gray-500 mt-1 ml-3"></i>
+                            <div>
+                                <div class="font-medium">الموقع:</div>
+                                <div class="text-gray-700">قسم الفيزياء، كلية العلوم</div>
+                                <div class="text-gray-700">جامعة المنصورة</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-user-tie text-gray-500 mt-1 ml-3"></i>
+                            <div>
+                                <div class="font-medium">رئيس مجلس القسم:</div>
+                                <div class="text-gray-700">أ.د. محمد عبدالكريم البقرى</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-user-graduate text-gray-500 mt-1 ml-3"></i>
+                            <div>
+                                <div class="font-medium">مقرر الورشة:</div>
+                                <div class="text-gray-700">أ.م.د. الإمام زكريا عمر</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- إحصائيات التسجيل -->
+                <div class="bg-white rounded-2xl shadow-xl p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">
+                        <i class="fas fa-chart-line ml-3 text-purple-600"></i>
+                        إحصائيات التسجيل
+                    </h3>
+                    
+                    <div id="registrationStats">
+                        <div class="text-center py-6">
+                            <div class="text-4xl font-bold text-purple-600 mb-2" id="registeredCount">0</div>
+                            <div class="text-gray-600">مشترك مسجل حتى الآن</div>
+                        </div>
+                        <div class="mt-4 text-center text-sm text-gray-500">
+                            كن من أوائل المسجلين واحجز مقعدك
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- الفوتر -->
+        <div class="mt-12 text-center text-gray-600">
+            <p>ورشة عمل <strong>"New Frontiers in Physics: Theory, Experiment, and Medicine"</strong></p>
+            <p class="mt-2">قسم الفيزياء - كلية العلوم - جامعة المنصورة © 2026</p>
+            <p class="mt-2">📧 للاستفسارات: <a href="mailto:phys.dept11@gmail.com" class="text-blue-600 hover:underline">phys.dept11@gmail.com</a></p>
+        </div>
+    </div>
+
+    <!-- نافذة النجاح -->
+    <div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 hidden">
+        <div class="bg-white rounded-2xl max-w-md w-full p-8 transform transition-all duration-300 scale-95 opacity-0" id="modalContent">
+            <div class="text-center">
+                <div class="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-check text-green-600 text-3xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">تم التسجيل بنجاح!</h3>
+                <p class="text-gray-600 mb-6">
+                    شكراً <span id="userName"></span> لتسجيلك في ورشة العمل. 
+                    تم إرسال تأكيد إلى بريدك الإلكتروني <span id="userEmail" class="font-medium"></span>
+                </p>
+                <div class="bg-blue-50 p-4 rounded-lg mb-6">
+                    <p class="text-sm text-gray-700">
+                        <i class="fas fa-info-circle text-blue-500 ml-2"></i>
+                        تم حفظ بياناتك وسيتم التواصل معك قريباً.
+                    </p>
+                </div>
+                <button onclick="closeModal()" 
+                    class="w-full bg-gradient-to-r from-blue-600 to-blue-800 text-white font-bold py-3 px-6 rounded-xl hover:opacity-90 transition">
+                    حسناً
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ملفات JavaScript -->
+    <script src="form-handler.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

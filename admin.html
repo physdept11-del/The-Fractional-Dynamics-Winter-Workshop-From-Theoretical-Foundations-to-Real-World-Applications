@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم تسجيلات الورشة</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body { font-family: 'Arial', sans-serif; }
+        .stats-card { background: white; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+    </style>
+</head>
+<body class="bg-gray-100 p-4">
+    <div class="container mx-auto">
+        <h1 class="text-3xl font-bold text-blue-800 mb-8 text-center">📊 لوحة تحكم تسجيلات ورشة الفيزياء</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="stats-card p-6 text-center">
+                <div class="text-4xl font-bold text-blue-600" id="totalCount">0</div>
+                <div class="text-gray-600 mt-2">إجمالي المسجلين</div>
+            </div>
+            <div class="stats-card p-6 text-center">
+                <div class="text-4xl font-bold text-green-600" id="certificateCount">0</div>
+                <div class="text-gray-600 mt-2">طلبوا الشهادة</div>
+            </div>
+            <div class="stats-card p-6 text-center">
+                <div class="text-4xl font-bold text-purple-600" id="latestDate">-</div>
+                <div class="text-gray-600 mt-2">آخر تسجيل</div>
+            </div>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-8">
+            <div class="px-6 py-4 bg-gray-50 border-b">
+                <h2 class="text-xl font-bold text-gray-800">قائمة المسجلين</h2>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full" id="registrationsTable">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="py-3 px-4">#</th>
+                            <th class="py-3 px-4">الاسم (عربي)</th>
+                            <th class="py-3 px-4">الاسم (إنجليزي)</th>
+                            <th class="py-3 px-4">البريد</th>
+                            <th class="py-3 px-4">الهاتف</th>
+                            <th class="py-3 px-4">الجامعة</th>
+                            <th class="py-3 px-4">الشهادة</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- سيتم ملؤها بالجافاسكريبت -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-lg p-6">
+            <h3 class="text-lg font-bold mb-4">تحميل البيانات</h3>
+            <div class="flex gap-4">
+                <button onclick="downloadCSV()" class="bg-green-600 text-white px-4 py-2 rounded-lg">
+                    📥 تحميل CSV
+                </button>
+                <button onclick="downloadJSON()" class="bg-blue-600 text-white px-4 py-2 rounded-lg">
+                    📥 تحميل JSON
+                </button>
+                <button onclick="clearData()" class="bg-red-600 text-white px-4 py-2 rounded-lg">
+                    🗑️ مسح البيانات
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // تحميل البيانات
+        function loadData() {
+            const submissions = JSON.parse(localStorage.getItem('workshop_submissions') || '[]');
+            
+            // تحديث الإحصائيات
+            document.getElementById('totalCount').textContent = submissions.length;
+            
+            const certificateCount = submissions.filter(s => s.certificate === 'نعم').length;
+            document.getElementById('certificateCount').textContent = certificateCount;
+            
+            if (submissions.length > 0) {
+                const latest = submissions[submissions.length - 1];
+                document.getElementById('latestDate').textContent = 
+                    new Date(latest.timestamp).toLocaleDateString('ar-EG');
+            }
+            
+            // عرض البيانات في الجدول
+            const tableBody = document.getElementById('tableBody');
+            tableBody.innerHTML = '';
+            
+            submissions.forEach((reg, index) => {
+                const row = document.createElement('tr');
+                row.className = index % 2 === 0 ? 'bg-gray-50' : 'bg-white';
+                row.innerHTML = `
+                    <td class="py-2 px-4">${index + 1}</td>
+                    <td class="py-2 px-4">${reg.full_name_ar || ''}</td>
+                    <td class="py-2 px-4">${reg.full_name_en || ''}</td>
+                    <td class="py-2 px-4">${reg.email || ''}</td>
+                    <td class="py-2 px-4">${reg.phone || ''}</td>
+                    <td class="py-2 px-4">${reg.university || ''}</td>
+                    <td class="py-2 px-4">
+                        <span class="${reg.certificate === 'نعم' ? 'bg-yellow-100 text-yellow-800' : 'bg-gray-100 text-gray-800'} px-2 py-1 rounded text-sm">
+                            ${reg.certificate || ''}
+                        </span>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+        
+        // تحميل CSV
+        function downloadCSV() {
+            const submissions = JSON.parse(localStorage.getItem('workshop_submissions') || '[]');
+            const headers = ['الاسم العربي', 'الاسم الإنجليزي', 'البريد', 'الهاتف', 'الجامعة', 'القسم', 'الشهادة', 'التاريخ'];
+            
+            let csv = headers.join(',') + '\n';
+            
+            submissions.forEach(reg => {
+                const row = [
+                    `"${reg.full_name_ar}"`,
+                    `"${reg.full_name_en}"`,
+                    `"${reg.email}"`,
+                    `"${reg.phone}"`,
+                    `"${reg.university}"`,
+                    `"${reg.department}"`,
+                    `"${reg.certificate}"`,
+                    `"${new Date(reg.timestamp).toLocaleString('ar-EG')}"`
+                ];
+                csv += row.join(',') + '\n';
+            });
+            
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `registrations_${new Date().toISOString().split('T')[0]}.csv`;
+            link.click();
+        }
+        
+        // تحميل JSON
+        function downloadJSON() {
+            const submissions = JSON.parse(localStorage.getItem('workshop_submissions') || '[]');
+            const dataStr = JSON.stringify(submissions, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `registrations_${new Date().toISOString().split('T')[0]}.json`;
+            link.click();
+        }
+        
+        // مسح البيانات
+        function clearData() {
+            if (confirm('هل أنت متأكد من مسح جميع البيانات؟')) {
+                localStorage.removeItem('workshop_submissions');
+                loadData();
+                alert('تم مسح البيانات');
+            }
+        }
+        
+        // تحميل البيانات عند فتح الصفحة
+        document.addEventListener('DOMContentLoaded', loadData);
+    </script>
+</body>
+</html>
